@@ -49,11 +49,11 @@ exports.DataInterface.prototype = {
     var user;
     for (user in users) {
       if (users[user].user_name === userName) {
-        callback(null, user);
+        callback(null, {'user_id': user});
         return;
       }
     }
-    callback('User "' + userName + '" not found');
+    callback(null, {});
   },
 
   getRosterList: function (userId, callback) {
