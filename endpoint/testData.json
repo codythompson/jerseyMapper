@@ -1,0 +1,26 @@
+{
+  "users": {
+    "1": {
+      "user_name": "Swammee",
+      "first_name": "Mark",
+      "last_name": "Mark"
+    }
+  },
+  "rosters": {
+    "1": {
+      "owner_id": 1,
+      "name": "Test Team 1",
+      "players": {
+        "11": "Danny Thompson",
+        "22": "Abby Thompson",
+        "33": "Josh Thompson",
+        "44": "Cody Thompson",
+        "55": "Lisa Thompson",
+        "66": "Mark Thompson",
+        "30": "Fake Name",
+        "40": "Test Fake",
+        "50": "Swammee"
+      }
+    }
+  }
+}

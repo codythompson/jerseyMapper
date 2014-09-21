@@ -1,0 +1,1 @@
+All rights reserved by Cody Thompson on all software files found within this repository until further notice.
