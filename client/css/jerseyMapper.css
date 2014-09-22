@@ -2,8 +2,22 @@
   margin: 10%;
 }
 
+.spinner-small {
+  width: 16px;
+  height: 16px;
+}
+.spinner-info {
+  display: inline-block;
+  background-image: url('../images/spinner_info.gif');
+  background-size: 100%;
+}
+
 .jm_btn-roster {
   width: 100%;
   margin-bottom: 16px;
   text-align: left;
+}
+
+.jm_login_loading {
+  text-align: center;
 }

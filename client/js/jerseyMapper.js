@@ -1,6 +1,7 @@
 'use strict';
 
 /* global _ */
+/* global $ */
 
 var JerseyMapper = function (options) {
   if (options == null) { // jshint ignore:line
@@ -15,7 +16,7 @@ JerseyMapper.prototype = {
   },
 
   hitEndpoint: function (format, values, headers, callback) {
-    var domain = this.options.protocol + "://" + this.options.domain + "/";
+    var domain = this.options.protocol + '://' + this.options.domain + '/';
     var qStr = '?' + JerseyMapper.format(format, values);
     var url = domain + qStr;
 
@@ -27,9 +28,17 @@ JerseyMapper.prototype = {
         callback(null, data);
       },
       error: function (jqXHR, status, error) {
-        callback(status);
+        callback(error);
       }
     });
+  },
+
+  getUserId: function (userName, callback) {
+    this.hitEndpoint(JerseyMapper.eps.get_user_id.format, [userName], {}, callback); 
+  },
+
+  getRosterList: function (userId, callback) {
+    this.hitEndpoint(JerseyMapper.eps.get_roster_list.format, [userId], {}, callback);
   },
 };
 
@@ -44,5 +53,8 @@ JerseyMapper.format = function (format, values) {
 JerseyMapper.eps = {
   get_user_id: {
     format: 'k' + 'e' + 'y' + '=13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w&' + 'action=get_user_id&user_name={0}',
+  },
+  get_roster_list: {
+    format: 'k' + 'e' + 'y' + '=13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w&' + 'action=get_roster_list&user_id={0}',
   },
 };
