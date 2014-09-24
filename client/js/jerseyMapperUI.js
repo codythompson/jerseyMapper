@@ -80,15 +80,51 @@ var JM_rosterListPanelMgr = function (args) {
   this.container_id = args.containerId;
   this.list_container_id = args.listContainerId;
   this.buttonClass = args.buttonClass;
+  this.loading_id = args.loadingId;
+  this.alert_id = args.alertId;
+
+  var self = this;
+  $(document).ready(function () {
+    self.getLoadingEle().hide();
+    self.getAlertEle().hide();
+  });
 };
 JM_rosterListPanelMgr.prototype = {
   button_template: '<button class="btn btn-default"></button>',
+  alert_duration: 5000,
 
   getListContainerEle: function () {
     return $('#' + this.list_container_id);
   },
   getContainerEle: function () {
     return $('#' + this.container_id);
+  },
+
+  getLoadingEle: function () {
+    return $('#' + this.loading_id);
+  },
+
+  getAlertEle: function () {
+    return $('#' + this.alert_id);
+  },
+
+  showLoading: function () {
+    this.getListContainerEle().hide();
+    this.getLoadingEle().show();
+  },
+  hideLoading: function () {
+    this.getListContainerEle().show();
+    this.getLoadingEle().hide();
+  },
+
+  alert: function (message) {
+    var ele = this.getAlertEle();
+    ele.text(message);
+    ele.show();
+    var self = this;
+    setTimeout(function () {
+      self.getAlertEle().hide();
+    }, this.alert_duration);
   },
 
   clear: function () {
@@ -114,6 +150,13 @@ JM_rosterListPanelMgr.prototype = {
       var onclick = callbackReturner(rosterObj);
       this.addRoster(rosterObj.name, onclick);
     }
+  },
+
+  go: function () {
+    this.showLoading();
+  },
+  ungo: function () {
+    this.hideLoading();
   },
 
   hide: function () {
@@ -171,10 +214,31 @@ JM_uiMgr.prototype = {
         self.userNameMgr.ungo();
 
         self.rosterListMgr.addRosterList(data, function (rosterObj) {
-          return function () {console.log(rosterObj);};
+          return function () {
+            self.showRoster(rosterObj.roster_id);
+          };
         }, true);
         self.rosterListMgr.show();
       });
+    });
+  },
+
+  showRoster: function (rosterId) {
+    this.rosterListMgr.go();
+
+    var self = this;
+    this.jm.getRoster(rosterId, function (err, data) {
+      if (err) {
+        self.rosterListMgr.alert('Unable to retrieve roster');
+        self.rosterListMgr.ungo();
+        return;
+      }
+
+      if (!data) {
+        self.rosterListMgr.alert('Roster not found');
+        self.rosterListMgr.ungo();
+        return;
+      }
     });
   },
 };

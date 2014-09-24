@@ -18,6 +18,8 @@ var jm_rosterListMgr = new JM_rosterListPanelMgr({
   containerId: 'jm_roster_list',
   listContainerId: 'jm_roster_list_container',
   buttonClass: 'jm_btn-roster',
+  loadingId: 'jm_roster_list_loading',
+  alertId: 'jm_roster_list_alert',
 });
 
 var jm_uiMgr = new JM_uiMgr(jm, jm_loginMgr, jm_rosterListMgr); // jshint ignore:line

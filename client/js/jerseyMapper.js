@@ -40,6 +40,10 @@ JerseyMapper.prototype = {
   getRosterList: function (userId, callback) {
     this.hitEndpoint(JerseyMapper.eps.get_roster_list.format, [userId], {}, callback);
   },
+
+  getRoster: function (rosterId, callback) {
+    this.hitEndpoint(JerseyMapper.eps.get_roster.format, [rosterId], {}, callback);
+  }
 };
 
 JerseyMapper.format = function (format, values) {
@@ -56,5 +60,8 @@ JerseyMapper.eps = {
   },
   get_roster_list: {
     format: 'k' + 'e' + 'y' + '=13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w&' + 'action=get_roster_list&user_id={0}',
+  },
+  get_roster: {
+    format: 'k' + 'e' + 'y' + '=13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w&' + 'action=get_roster&roster_id={0}',
   },
 };
