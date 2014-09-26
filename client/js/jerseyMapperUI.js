@@ -1,3 +1,8 @@
+/*
+* TODO: we have A WHOLE HECK OF ALOT of code duplication here
+* lets bust it out into basic functions getting re-used.
+*/
+
 'use strict';
 
 /* global $ */
@@ -168,6 +173,68 @@ JM_rosterListPanelMgr.prototype = {
   },
 };
 
+var JM_rosterQueryPanelMgr = function (args) {
+  this.container_id = args.containerId;
+  this.result_container_id = args.resultContainerId;
+  this.input_id = args.textInputId;
+  this.input_button_id = args.buttonInputId;
+};
+JM_rosterQueryPanelMgr.prototype = {
+  result_class: 'well well-sm jm_roster_result',
+  miss_class: 'alert alert-danger jm_roster_result',
+  miss_message: 'player not found',
+  result_number_class: 'badge jm_roster_result_number',
+  result_name_class: 'jm_roster_result_name',
+  // max_shown_results: 3,
+
+  getContainerEle: function () {
+    return $('#' + this.container_id);
+  },
+  getResultContainerEle: function () {
+    return $('#' + this.result_container_id);
+  },
+  getInputEle: function () {
+    return $('#' + this.input_id);
+  },
+  getInputButtonEle: function () {
+    return $('#' + this.input_button_id);
+  },
+
+  hide: function () {
+    this.getContainerEle().hide();
+  },
+  show: function () {
+    this.getContainerEle().show();
+  },
+
+  addResult: function (number, name, containerClass) {
+    if (containerClass == undefined) { // jshint ignore:line
+      containerClass = this.result_class;
+    }
+
+    var resEle = $('<div></div>');
+    resEle.addClass(containerClass);
+    var childEle = $('<span></span>');
+    childEle.addClass(this.result_number_class);
+    childEle.text(number);
+    resEle.append(childEle);
+    childEle = $('<span></span>');
+    childEle.addClass(this.result_name_class);
+    childEle.text(name);
+    resEle.append(childEle);
+    this.getResultContainerEle().prepend(resEle);
+  },
+
+  addMiss: function (number) {
+    this.addResult(number, this.miss_message, this.miss_class);
+  },
+
+  go: function () {
+    return this.getInputEle().val();
+  },
+  ungo: function () {}
+};
+
 var JM_rosterPanelMgr = function (args) {
   this.container_id = args.containerId;
 };
@@ -188,16 +255,20 @@ JM_rosterPanelMgr.prototype = {
 /****************************************
 * UI interaction Manager
 ****************************************/
-var JM_uiMgr = function (jm, userNameMgr, rosterListMgr, rosterPanelMgr) {
+var JM_uiMgr = function (jm, userNameMgr, rosterListMgr, rosterPanelMgr, rosterQueryPanelMgr) {
   this.jm = jm;
   this.userNameMgr = userNameMgr;
   this.rosterListMgr = rosterListMgr;
   this.rosterMgr = rosterPanelMgr;
+  this.rosterQueryMgr = rosterQueryPanelMgr;
 
   var self = this;
   $(document).ready(function () {
     self.rosterListMgr.hide();
     self.rosterMgr.hide();
+    self.rosterQueryMgr.getInputButtonEle().click(function () {
+      self.numberQuery();
+    });
   });
 };
 JM_uiMgr.prototype = {
@@ -262,5 +333,26 @@ JM_uiMgr.prototype = {
       self.rosterListMgr.hide();
       self.rosterMgr.show();
     });
+  },
+
+  numberQuery: function () {
+    if (!this.roster_data || !this.roster_data.players) {
+      this.rosterQueryMgr.addResult('!', 'ERROR - MISSING ROSTER DATA', this.rosterQueryMgr.miss_class);
+      return;
+    }
+
+    var number = this.rosterQueryMgr.go();
+    number = parseInt(number);
+    if (isNaN(number)) {
+      this.rosterQueryMgr.addResult('!', 'Non integer value', this.rosterQueryMgr.miss_class);
+      return;
+    }
+
+    var result = this.roster_data.players[number];
+    if (result === undefined) {
+      this.rosterQueryMgr.addMiss(number);
+      return;
+    }
+    this.rosterQueryMgr.addResult(number, result);
   },
 };

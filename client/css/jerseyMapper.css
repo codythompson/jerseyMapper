@@ -21,3 +21,13 @@
 .jm_login_loading {
   text-align: center;
 }
+
+.jm_roster_result_number {
+  font-size: 1.5em;
+  margin-right: 8px;
+}
+
+.jm_roster_result_number {
+  font-size: 1.15em;
+  font-weight: 900;
+}
