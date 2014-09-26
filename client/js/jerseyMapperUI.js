@@ -168,17 +168,36 @@ JM_rosterListPanelMgr.prototype = {
   },
 };
 
+var JM_rosterPanelMgr = function (args) {
+  this.container_id = args.containerId;
+};
+JM_rosterPanelMgr.prototype = {
+  getContainerEle: function () {
+    return $('#' + this.container_id);
+  },
+
+  hide: function () {
+    this.getContainerEle().hide();
+  },
+
+  show: function () {
+    this.getContainerEle().show();
+  },
+};
+
 /****************************************
 * UI interaction Manager
 ****************************************/
-var JM_uiMgr = function (jm, userNameMgr, rosterListMgr) {
+var JM_uiMgr = function (jm, userNameMgr, rosterListMgr, rosterPanelMgr) {
   this.jm = jm;
   this.userNameMgr = userNameMgr;
   this.rosterListMgr = rosterListMgr;
+  this.rosterMgr = rosterPanelMgr;
 
   var self = this;
   $(document).ready(function () {
     self.rosterListMgr.hide();
+    self.rosterMgr.hide();
   });
 };
 JM_uiMgr.prototype = {
@@ -228,17 +247,20 @@ JM_uiMgr.prototype = {
 
     var self = this;
     this.jm.getRoster(rosterId, function (err, data) {
+      self.rosterListMgr.ungo();
       if (err) {
         self.rosterListMgr.alert('Unable to retrieve roster');
-        self.rosterListMgr.ungo();
         return;
       }
 
       if (!data) {
         self.rosterListMgr.alert('Roster not found');
-        self.rosterListMgr.ungo();
         return;
       }
+
+      self.roster_data = data;
+      self.rosterListMgr.hide();
+      self.rosterMgr.show();
     });
   },
 };

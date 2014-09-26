@@ -28,7 +28,7 @@ JerseyMapper.prototype = {
         callback(null, data);
       },
       error: function (jqXHR, status, error) {
-        callback(error);
+        callback(status);
       }
     });
   },
