@@ -1,0 +1,64 @@
+{
+  "users": {
+    "1": {
+      "user_name": "Swammee",
+      "first_name": "Mark",
+      "last_name": "Thompson"
+    }
+  },
+  "rosters": {
+    "1": {
+      "owner_id": 1,
+      "name": "ncms 2014",
+      "players": {
+"1": { "last_name": "RAITTER", "first_name": "JOHN", "number": "7", "position": "DB/WR"},
+
+"3": { "last_name": "FORREST", "first_name": "NOAH", "number": "8", "position": "LB/RB"},
+
+"4": { "last_name": "CASS", "first_name": "ISAIAH", "number": "8", "position": "DB/RB"},
+
+"8": { "last_name": "CASTLEDINE", "first_name": "DAN", "number": "7", "position": "LB/RB"},
+
+"10": { "last_name": "WILES", "first_name": "JUSTUS", "number": "8", "position": "DB/QB"},
+
+"11": { "last_name": "DENNIS", "first_name": "GABRIEL", "number": "7", "position": "DB/WR"},
+
+"14": { "last_name": "ADY", "first_name": "KYLE", "number": "7", "position": "DB/RB"},
+
+"15": { "last_name": "LOWERY", "first_name": "MICHAEL", "number": "8", "position": "LB/RB"},
+
+"19": { "last_name": "BRANDS", "first_name": "ETHAN", "number": "8", "position": "LB/RB"},
+
+"22": { "last_name": "STORACI", "first_name": "CALEB", "number": "7", "position": "DB/WR"},
+
+"24": { "last_name": "REEVE", "first_name": "CALEB", "number": "7", "position": "LB/RB"},
+
+"34": { "last_name": "BOTTOM", "first_name": "KOMAS", "number": "7", "position": "LB/TE"},
+
+"44": {"last_name": "BRADSHAW", "first_name": "AIDAN", "number": "8", "position": "DE/OL"},
+
+"50": {"last_name": "BRADSHAW", "first_name": "AIDAN", "number": "8", "position": "DE/OL"},
+
+"52": { "last_name": "MOUW", "first_name": "RANGE", "number": "7", "position": "LB/OL"},
+
+"53": { "last_name": "REYNOLDS", "first_name": "JOEY", "number": "7", "position": "DL/OL"},
+
+"54": { "last_name": "TIERSMA", "first_name": "MATTHEW", "number": "7", "position": "LB/OL"},
+
+"60": { "last_name": "HENSLEY", "first_name": "DAKOTA", "number": "8", "position": "LB/OL"},
+
+"62": { "last_name": "WOODWARD", "first_name": "JACOB", "number": "7", "position": "DE/OL"},
+
+"64": { "last_name": "ADY", "first_name": "KALEB", "number": "7", "position": "DL/OL"},
+
+"70": { "last_name": "SHELLEY", "first_name": "CHRIS", "number": "8", "position": "DL/OL"},
+
+"72": { "last_name": "LEWIS", "first_name": "JAKE", "number": "7", "position": "DE/OL"},
+
+"74": { "last_name": "MUELLER", "first_name": "SAM", "number": "8", "position": "DE/OL"},
+
+"75": { "last_name": "EDWARDS", "first_name": "ZACH", "number": "7", "position": "DL/OL"}
+      }
+    }
+  }
+}
