@@ -4,7 +4,8 @@
 /* global JM_userNamePanelMgr */
 /* global JM_rosterListPanelMgr */
 /* global JM_rosterPanelMgr */
-/* global  JM_rosterQueryPanelMgr */
+/* global JM_rosterQueryPanelMgr */
+/* global JM_rosterTablePanelMgr */
 /* global JM_uiMgr */
 
 var jm = new JerseyMapper(); //jshint ignore:line
@@ -32,7 +33,8 @@ var jm_rosterQueryMgr = new JM_rosterQueryPanelMgr({
     containerId: 'jm_roster_query',
 	resultContainerId: 'jm_roster_results_list',
 	textInputId: 'jm_roster_input',
-	buttonInputId: 'jm_roster_input_button'
+	buttonInputId: 'jm_roster_input_button',
+  clearButtonId: 'jm_roster_results_clear'
 });
 
 var jm_rosterTableMgr = new JM_rosterTablePanelMgr({
@@ -40,4 +42,11 @@ var jm_rosterTableMgr = new JM_rosterTablePanelMgr({
   tableBodyId: 'jm_roster_table_body',
 });
 
-var jm_uiMgr = new JM_uiMgr(jm, jm_loginMgr, jm_rosterListMgr, jm_rosterMgr, jm_rosterQueryMgr, jm_rosterTableMgr); // jshint ignore:line
+var jm_uiMgr = new JM_uiMgr( // jshint ignore:line
+  jm,
+  jm_loginMgr,
+  jm_rosterListMgr,
+  jm_rosterMgr,
+  jm_rosterQueryMgr,
+  jm_rosterTableMgr
+); 

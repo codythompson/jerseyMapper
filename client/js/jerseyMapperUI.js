@@ -7,6 +7,7 @@
 
 /* global $ */
 /* global _ */
+/* global utils */
 
 /****************************************
 * Login Panel Manager
@@ -179,6 +180,7 @@ var JM_rosterQueryPanelMgr = function (args) {
   this.result_container_id = args.resultContainerId;
   this.input_id = args.textInputId;
   this.input_button_id = args.buttonInputId;
+  this.clear_button_id = args.clearButtonId;
 };
 JM_rosterQueryPanelMgr.prototype = {
   result_class: 'well well-sm jm_roster_result',
@@ -199,6 +201,9 @@ JM_rosterQueryPanelMgr.prototype = {
   },
   getInputButtonEle: function () {
     return $('#' + this.input_button_id);
+  },
+  getClearButtonEle: function () {
+    return $('#' + this.clear_button_id);
   },
 
   hide: function () {
@@ -325,6 +330,9 @@ var JM_uiMgr = function (jm, userNameMgr, rosterListMgr, rosterPanelMgr, rosterQ
     self.rosterMgr.hide();
     self.rosterQueryMgr.getInputButtonEle().click(function () {
       self.numberQuery();
+    });
+    self.rosterQueryMgr.getClearButtonEle().click(function () {
+      self.rosterQueryMgr.clear();
     });
   });
 };
