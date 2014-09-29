@@ -17,6 +17,7 @@
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+<script type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript" src="js/jerseyMapper.js"></script>
 <script type="text/javascript" src="js/jerseyMapperUI.js"></script>
 <script type="text/javascript" src="js/init.js"></script>
@@ -71,10 +72,10 @@
         </div>
       </div>
 
-      <!-- roster list panel -->
+      <!-- roster panel -->
       <div id="jm_roster" class="row">
 
-        <div id="jm_roster_query" class="col-lg-3 col-md-4 col-sm-12">
+        <div id="jm_roster_query" class="col-lg-4 col-md-4 col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">Player Query by Number</div>
             <div class="panel-body">
@@ -97,10 +98,19 @@
           </div>
         </div>
 
-        <div id="jm_roster_table" class="col-lg-9 col-md-8 col-sm-12">
+        <div id="jm_roster_table" class="col-lg-6 col-lg-offset-2 col-md-8 col-sm-12">
           <div class="panel panel-info">
             <div class="panel-heading">Roster</div>
             <div class="panel-body">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th><th>First</th><th>Last</th><th>Position</th>
+                  </tr>
+                </thead>
+                <tbody id="jm_roster_table_body">
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

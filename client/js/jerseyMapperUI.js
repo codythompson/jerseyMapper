@@ -6,6 +6,7 @@
 'use strict';
 
 /* global $ */
+/* global _ */
 
 /****************************************
 * Login Panel Manager
@@ -212,6 +213,15 @@ JM_rosterQueryPanelMgr.prototype = {
       containerClass = this.result_class;
     }
 
+    var playerInfoStr;
+    if (typeof playerInfo === 'object') {
+      playerInfoStr = utils.replaceNullOrUndefined(playerInfo.position) + ' - ';
+      playerInfoStr += utils.replaceNullOrUndefined(playerInfo.first_name) + ' ';
+      playerInfoStr += utils.replaceNullOrUndefined(playerInfo.last_name);
+    } else {
+      playerInfoStr = playerInfo;
+    }
+
     var resEle = $('<div></div>');
     resEle.addClass(containerClass);
     var childEle = $('<span></span>');
@@ -220,7 +230,7 @@ JM_rosterQueryPanelMgr.prototype = {
     resEle.append(childEle);
     childEle = $('<span></span>');
     childEle.addClass(this.result_name_class);
-    childEle.text(playerInfo.first_name + " " + playerInfo.last_name);
+    childEle.text(playerInfoStr);
     resEle.append(childEle);
     this.getResultContainerEle().prepend(resEle);
   },
@@ -229,11 +239,57 @@ JM_rosterQueryPanelMgr.prototype = {
     this.addResult(number, this.miss_message, this.miss_class);
   },
 
+  clear: function () {
+    this.getResultContainerEle().empty();
+  },
+
   go: function () {
     return this.getInputEle().val();
   },
   ungo: function () {}
 };
+
+var JM_rosterTablePanelMgr = function (args) {
+  this.container_id = args.containerId;
+  this.table_body_id = args.tableBodyId;
+};
+JM_rosterTablePanelMgr.prototype = {
+  getContainerEle: function () {
+    return $('#' + this.container_id);
+  },
+  getTableBodyEle: function () {
+    return $('#' + this.table_body_id);
+  },
+
+  addCell: function (rowEle, cellValue) {
+    var rowChild = $('<td></td>');
+    rowChild.text(cellValue);
+    rowEle.append(rowChild);
+  },
+  addPlayer: function (number, dataObj) {
+    var rowEle = $('<tr></tr>');
+    this.addCell(rowEle, number);
+    this.addCell(rowEle, dataObj.first_name);
+    this.addCell(rowEle, dataObj.last_name);
+    this.addCell(rowEle, dataObj.position);
+    this.getTableBodyEle().append(rowEle);
+  },
+  addRoster: function (rosterData) {
+    var self = this;
+    _.forOwn(rosterData, function (val, key) {
+      self.addPlayer(key, val);
+    });
+  },
+
+  hide: function () {
+    this.getContainerEle().hide();
+  },
+
+  show: function () {
+    this.getContainerEle().show();
+  },
+};
+
 
 var JM_rosterPanelMgr = function (args) {
   this.container_id = args.containerId;
@@ -255,12 +311,13 @@ JM_rosterPanelMgr.prototype = {
 /****************************************
 * UI interaction Manager
 ****************************************/
-var JM_uiMgr = function (jm, userNameMgr, rosterListMgr, rosterPanelMgr, rosterQueryPanelMgr) {
+var JM_uiMgr = function (jm, userNameMgr, rosterListMgr, rosterPanelMgr, rosterQueryPanelMgr, rosterTablePanelMgr) {
   this.jm = jm;
   this.userNameMgr = userNameMgr;
   this.rosterListMgr = rosterListMgr;
   this.rosterMgr = rosterPanelMgr;
   this.rosterQueryMgr = rosterQueryPanelMgr;
+  this.rosterTableMgr = rosterTablePanelMgr;
 
   var self = this;
   $(document).ready(function () {
@@ -330,6 +387,7 @@ JM_uiMgr.prototype = {
       }
 
       self.roster_data = data;
+      self.rosterTableMgr.addRoster(data.players);
       self.rosterListMgr.hide();
       self.rosterMgr.show();
     });
@@ -354,5 +412,9 @@ JM_uiMgr.prototype = {
       return;
     }
     this.rosterQueryMgr.addResult(number, result);
+  },
+
+  clearResults: function () {
+    this.rosterQueryMgr.clear();
   },
 };

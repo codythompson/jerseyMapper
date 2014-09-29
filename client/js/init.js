@@ -35,4 +35,9 @@ var jm_rosterQueryMgr = new JM_rosterQueryPanelMgr({
 	buttonInputId: 'jm_roster_input_button'
 });
 
-var jm_uiMgr = new JM_uiMgr(jm, jm_loginMgr, jm_rosterListMgr, jm_rosterMgr, jm_rosterQueryMgr); // jshint ignore:line
+var jm_rosterTableMgr = new JM_rosterTablePanelMgr({
+  containerId: 'jm_roster_table',
+  tableBodyId: 'jm_roster_table_body',
+});
+
+var jm_uiMgr = new JM_uiMgr(jm, jm_loginMgr, jm_rosterListMgr, jm_rosterMgr, jm_rosterQueryMgr, jm_rosterTableMgr); // jshint ignore:line
