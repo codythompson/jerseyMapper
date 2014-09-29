@@ -20,7 +20,7 @@ exports.Connect = function (credentials, callback) { // jshint ignore:line
     return;
   }
 
-  fs.readFile('testData.json', 'utf8', function (err, data) {
+  fs.readFile('testData2.json', 'utf8', function (err, data) {
     if (err) {
       callback('Unable to read data source.');
       return;

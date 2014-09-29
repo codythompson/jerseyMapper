@@ -207,7 +207,7 @@ JM_rosterQueryPanelMgr.prototype = {
     this.getContainerEle().show();
   },
 
-  addResult: function (number, name, containerClass) {
+  addResult: function (number, playerInfo, containerClass) {
     if (containerClass == undefined) { // jshint ignore:line
       containerClass = this.result_class;
     }
@@ -220,7 +220,7 @@ JM_rosterQueryPanelMgr.prototype = {
     resEle.append(childEle);
     childEle = $('<span></span>');
     childEle.addClass(this.result_name_class);
-    childEle.text(name);
+    childEle.text(playerInfo.first_name + " " + playerInfo.last_name);
     resEle.append(childEle);
     this.getResultContainerEle().prepend(resEle);
   },

@@ -1,0 +1,29 @@
+{
+  "users": {
+    "1": {
+      "user_name": "Swammee",
+      "first_name": "Mark",
+      "last_name": "Mark"
+    }
+  },
+  "rosters": {
+    "1": {
+      "owner_id": 1,
+      "name": "Test Team 1",
+      "players": {
+        "11": {
+          "first_name": "Test",
+          "last_name": "Fake"
+        },
+        "22": {
+          "first_name": "Testb",
+          "last_name": "Fake2"
+        },
+        "33": {
+          "first_name": "Testc",
+          "last_name": "Fake3"
+        }
+      }
+    }
+  }
+}
