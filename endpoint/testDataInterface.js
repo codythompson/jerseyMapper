@@ -5,17 +5,14 @@
 
 var fs = require('fs');
 var utils = require('./utils');
-
-var __keys = [
-  '13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w',
-];
+var config = require('./config');
 
 exports.Connect = function (credentials, callback) { // jshint ignore:line
   if (!credentials.key) {
     callback('credentials.key is required');
     return;
   }
-  if (!utils.arrayContains(__keys, credentials.key)) {
+  if (!utils.arrayContains(config.__keys, credentials.key)) {
     callback('Invalid key');
     return;
   }

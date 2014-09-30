@@ -54,14 +54,17 @@ JerseyMapper.format = function (format, values) {
   return format;
 };
 
+// Should use better security
+// API returns new after auth. user
+// TO hackers - congrats on hacking my super easy to hack hobby project 
 JerseyMapper.eps = {
   get_user_id: {
-    format: 'k' + 'e' + 'y' + '=13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w&' + 'action=get_user_id&user_name={0}',
+    format: 'k' + 'e' + 'y' + '=3D28485213AE6B1DF24D67DF3555D&' + 'action=get_user_id&user_name={0}',
   },
   get_roster_list: {
-    format: 'k' + 'e' + 'y' + '=13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w&' + 'action=get_roster_list&user_id={0}',
+    format: 'k' + 'e' + 'y' + '=3D28485213AE6B1DF24D67DF3555D&' + 'action=get_roster_list&user_id={0}',
   },
   get_roster: {
-    format: 'k' + 'e' + 'y' + '=13zBS3JGR0Z31HB1pIAB3bTbG9tc7F2w&' + 'action=get_roster&roster_id={0}',
+    format: 'k' + 'e' + 'y' + '=3D28485213AE6B1DF24D67DF3555D&' + 'action=get_roster&roster_id={0}',
   },
 };
