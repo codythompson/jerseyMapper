@@ -2,5 +2,10 @@
   "name": "jersey-mapper-endpoint",
   "version": "0.1.0",
   "description": "Endpoint for jersey-mapper web app",
-  "main": "jerseyMapper.js"
+  "main": "jerseyMapper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cody Thompson",
+  "license": "All Rights Reserved by Cody Thompson at this time (September 29 2014)"
 }
