@@ -7,7 +7,7 @@ var JerseyMapper = function (options) {
   if (options == null) { // jshint ignore:line
     options = {};
   }
-  _.defaults(options, this.options);
+  this.options = _.defaults(options, this.options);
 };
 JerseyMapper.prototype = {
   options: {

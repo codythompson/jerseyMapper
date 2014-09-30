@@ -8,7 +8,9 @@
 /* global JM_rosterTablePanelMgr */
 /* global JM_uiMgr */
 
-var jm = new JerseyMapper(); //jshint ignore:line
+var jm = new JerseyMapper({
+  domain: 'jersey-mapper.herokuapp.com'
+}); //jshint ignore:line
 
 var jm_loginMgr = new JM_userNamePanelMgr({ //jshint ignore:line
   containerId: 'jm_login',
