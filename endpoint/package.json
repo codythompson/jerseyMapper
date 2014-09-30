@@ -7,5 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cody Thompson",
-  "license": "All Rights Reserved by Cody Thompson at this time (September 29 2014)"
+  "license": "All Rights Reserved by Cody Thompson at this time (September 29 2014)",
+  "dependencies": {
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "url": "^0.10.1"
+  }
 }
