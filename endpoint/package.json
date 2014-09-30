@@ -1,0 +1,6 @@
+{
+  "name": "jersey-mapper-endpoint",
+  "version": "0.1.0",
+  "description": "Endpoint for jersey-mapper web app",
+  "main": "jerseyMapper.js"
+}
